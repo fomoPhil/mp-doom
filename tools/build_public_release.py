@@ -20,7 +20,7 @@ from export_doom_source import export
 from build_support import REVISIONS, verify_upstream
 
 VERSION = (ROOT / 'public/VERSION').read_text().strip()
-ENGINE_SHA256 = 'e8da6de958421c85fcf6a8dceee5469ca0ad75258ffa346ee4b1f34893adf0e2'
+ENGINE_SHA256 = 'f82f086341a49b8a408fb600b1f7643ad0f8fb74bcc39691328d9f65515adb4f'
 EXTRACTOR_ZIP_SHA256 = '6989342c9b026a00a72a38f23b62a8e6a22cc5de69805cf47d68ac2fec993065'
 EXTRACTOR_SHA256 = '946bd06d8b3722a791fea4d84f496139eef6faef61640924cb72f5f1998a68e1'
 EXTRACTOR_DIR = 'windows/innoextract'
@@ -53,7 +53,7 @@ def validate_release_engine(engine):
     if info.get('music_driver_sha256') != digest(engine.parent / 'mpc_oplmusic.inc'):
         raise ValueError('Generated music source does not match its build record')
     if info['sha256'] != ENGINE_SHA256:
-        raise ValueError('Release engine does not match the tested MP DOOM 1.0.3 candidate')
+        raise ValueError('Release engine does not match the tested MP DOOM 1.0.4 candidate')
     verify_upstream(ROOT)
     return engine_digest(engine)
 

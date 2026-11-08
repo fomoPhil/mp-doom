@@ -1,4 +1,4 @@
-# MP DOOM 1.0.3
+# MP DOOM 1.0.4
 
 Play the original DOOM on MPC Sample from an SD card. The starter includes the unchanged, free shareware episode. The full-game setup uses your own supported GOG Ultimate DOOM installer. Both use the same prebuilt engine; no AI or compiling is needed.
 
@@ -6,11 +6,11 @@ This release targets MPC Sample firmware 1.3.0.12. It runs the game from RAM and
 
 ## Choose a download
 
-- **Starter:** unzip `mp-doom-1.0.3-starter.zip`. Its `SD/autorun` folder is ready to copy on Windows and macOS.
-- **Full game:** unzip `mp-doom-1.0.3-full-setup.zip`, then follow the Windows or Mac instructions below. Commercial game data is not included.
-- **Matching source:** `mp-doom-1.0.3-source.zip` contains the engine source, modifications, build scripts and runtime source. It is for developers; players do not need it.
+- **Starter:** unzip `mp-doom-1.0.4-starter.zip`. Its `SD/autorun` folder is ready to copy on Windows and macOS.
+- **Full game:** unzip `mp-doom-1.0.4-full-setup.zip`, then follow the Windows or Mac instructions below. Commercial game data is not included.
+- **Matching source:** `mp-doom-1.0.4-source.zip` contains the engine source, modifications, build scripts and runtime source. It is for developers; players do not need it.
 
-All downloads include version and license information. Compare the ZIP's hash with `SHA256SUMS.txt` using `Get-FileHash .\mp-doom-1.0.3-starter.zip` in PowerShell or `shasum -a 256 mp-doom-1.0.3-starter.zip` on macOS.
+All downloads include version and license information. Compare the ZIP's hash with `SHA256SUMS.txt` using `Get-FileHash .\mp-doom-1.0.4-starter.zip` in PowerShell or `shasum -a 256 mp-doom-1.0.4-starter.zip` on macOS.
 
 ## What you need for the full game
 
@@ -44,7 +44,7 @@ The engine is included. The generated folder contains your purchased game data, 
 
 ## Install the SD folder
 
-1. Save your MPC project and shut the MPC down normally. Use a card that already works with the stock MPC Sample. Back up the card to your computer first.
+1. Save your MPC project and shut the MPC down normally. Use an exFAT card that already works with the stock MPC Sample. Any card name is fine. Back up the card to your computer first.
 2. Open the card on your computer. If it already has an `autorun` folder, copy that entire folder to your computer, then rename the card copy to `autorun.disabled`. Do not merge the old and new folders.
 3. Copy the starter's `SD/autorun`, or the full setup's generated `autorun`, to the **root of the card**. The result must be `<card>/autorun/autorun.sh`, not `<card>/SD/autorun/...`. Keep all files together. Do not change `MPC-Sample` or format the card.
 4. Eject the card safely. With the MPC powered off, insert it and turn the MPC on. The game should launch automatically into episode 1, map 1 on easy difficulty. Use New Game to choose another available episode or skill.
@@ -97,9 +97,8 @@ Booting with no autorun card returns to normal stock operation. Removing a card 
 
 | Symptom | Check |
 | --- | --- |
-| Stock starts instead of DOOM | Check the root-level `autorun/autorun.sh` layout, complete folder copy, supported firmware and writable card. Recopy the original folder with the MPC off. |
+| Stock starts instead of DOOM | Check the root-level `autorun/autorun.sh` layout, complete folder copy, exFAT format, supported firmware and writable card. Recopy the original folder with the MPC off. |
 | Game will not start | Confirm the card is writable and has free space for saves. Use the unmodified package; its engine, WAD and launcher are hash checked before launch. |
-| Card mounts under an unusual path | The MPC's normal `/media/MPCsample` path is supported. Mount paths with spaces or special characters are rejected before save writes. |
 | Full setup rejects the installer | It needs the exact named offline installer and hash above. Keep your original file; this tool does not patch or convert other versions. |
 | Windows setup cannot find a file | Use **Extract All** and run setup from the extracted folder. Keep the `windows` subfolder next to the setup file. |
 | macOS cannot find `innoextract` | Run `innoextract --version`, install it, or pass `--extractor /absolute/path/to/innoextract`. |
