@@ -6,7 +6,7 @@ By [Phil Woolley](https://philwoolley.com/mpdoom/).
 
 ## Download
 
-Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases/latest) or [philwoolley.com/mp-doom](https://philwoolley.com/mpdoom/).
+Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases/latest) or [philwoolley.com/mpdoom](https://philwoolley.com/mpdoom/).
 
 | Download | What it is |
 | --- | --- |
