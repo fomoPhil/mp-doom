@@ -16,7 +16,7 @@ Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases
 
 Tested on MPC Sample firmware 1.3.0.12.
 
-Want sounds to go with it? Grab the free [MP DOOM Pad Kit](https://philwoolley.com/mp-doom/#pad-kit): 16 one-shots for your MPC.
+Want sounds to go with it? Grab the free [MP DOOM Kit](https://philwoolley.com/mp-doom/#pad-kit): 16 one-shots for your MPC.
 
 ## Install the starter
 
