@@ -2,11 +2,11 @@
 
 Play classic DOOM on your Akai MPC Sample. It boots from an SD card, runs from memory, and quits back to the stock MPC when you're done. Nothing is flashed or installed.
 
-By [Phil Woolley](https://philwoolley.com/mp-doom/).
+By [Phil Woolley](https://philwoolley.com/mpdoom/).
 
 ## Download
 
-Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases/latest) or [philwoolley.com/mp-doom](https://philwoolley.com/mp-doom/).
+Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases/latest) or [philwoolley.com/mp-doom](https://philwoolley.com/mpdoom/).
 
 | Download | What it is |
 | --- | --- |
@@ -16,7 +16,7 @@ Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases
 
 Tested on MPC Sample firmware 1.3.0.12.
 
-Want sounds to go with it? Grab the free [MP DOOM Kit](https://philwoolley.com/mp-doom/#pad-kit): 16 one-shots for your MPC.
+Want sounds to go with it? Grab the free [MP DOOM Kit](https://philwoolley.com/mpdoom/#pad-kit): 16 one-shots for your MPC.
 
 ## Install the starter
 
