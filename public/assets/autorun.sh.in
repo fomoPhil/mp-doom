@@ -1,0 +1,36 @@
+#!/bin/sh
+# SD setup only: game, data, logs, and execution move into verified RAM.
+set -eu
+umask 077
+D=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+RAM=/run/mpc-doom
+[ "$(id -u)" = 0 ]
+grep -q ' /run tmpfs ' /proc/mounts
+command -v systemd-run >/dev/null 2>&1
+command -v systemctl >/dev/null 2>&1
+for unit in mpc-doom.service mpc-doom-autostart.service; do
+    state=$(systemctl show "$unit" -p ActiveState --value 2>/dev/null || true)
+    case "$state" in active|activating|deactivating|reloading) exit 0 ;; esac
+done
+[ ! -L "$RAM" ]
+mkdir -p "$RAM"
+[ -d "$RAM" ]
+for name in mpc-doom doom.wad launch-doom.sh launcher.log setup.log; do
+    [ ! -L "$RAM/$name" ]
+    if [ -e "$RAM/$name" ]; then [ -f "$RAM/$name" ]; fi
+done
+chmod 700 "$RAM"
+cp "$D/mpc-doom" "$RAM/mpc-doom"
+cp "$D/doom.wad" "$RAM/doom.wad"
+printf '%s  %s\n' '@ENGINE_SHA256@' "$RAM/mpc-doom" | sha256sum -c - >/dev/null
+printf '%s  %s\n' '@WAD_SHA256@' "$RAM/doom.wad" | sha256sum -c - >/dev/null
+chmod 700 "$RAM/mpc-doom"
+cp "$D/launch-doom.sh" "$RAM/launch-doom.sh"
+chmod 700 "$RAM/launch-doom.sh"
+printf '%s  %s\n' '@LAUNCH_SHA256@' "$RAM/launch-doom.sh" | sha256sum -c - >/dev/null
+systemd-run --unit=mpc-doom-autostart --collect --no-block \
+    --property=Type=oneshot --property=After=ac50.service \
+    --property=TimeoutStartSec=45s --property=TimeoutStopSec=5s \
+    --property="StandardOutput=append:$RAM/launcher.log" \
+    --property="StandardError=append:$RAM/launcher.log" \
+    /bin/sh "$RAM/launch-doom.sh" "$D" > "$RAM/setup.log" 2>&1

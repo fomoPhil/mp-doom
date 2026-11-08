@@ -1,0 +1,135 @@
+[
+  {
+    "title": "MOVEMENT + COMBAT",
+    "rows": [
+      [
+        "TURN KNOB",
+        "LOOK LEFT/RIGHT"
+      ],
+      [
+        "PAD 10",
+        "FORWARD"
+      ],
+      [
+        "PAD 6",
+        "BACK"
+      ],
+      [
+        "PADS 5 / 7",
+        "STRAFE LEFT/RIGHT"
+      ],
+      [
+        "PUSH KNOB",
+        "FIRE (HOLD)"
+      ],
+      [
+        "PAD 4",
+        "FIRE (HOLD)"
+      ],
+      [
+        "PAD 8",
+        "OPEN / USE"
+      ],
+      [
+        "SHIFT",
+        "RUN ON/OFF"
+      ],
+      [
+        "PAD 12",
+        "MAP ON/OFF"
+      ],
+      [
+        "MAIN VOLUME",
+        "ALL AUDIO"
+      ]
+    ],
+    "notes": [
+      "TAP POWER TO RETURN TO THE MPC"
+    ]
+  },
+  {
+    "title": "WEAPONS + PICKUPS",
+    "rows": [
+      [
+        "PAD 13",
+        "FISTS / CHAINSAW"
+      ],
+      [
+        "PAD 14",
+        "PISTOL"
+      ],
+      [
+        "PAD 15",
+        "SHOTGUN"
+      ],
+      [
+        "PAD 16",
+        "CHAINGUN"
+      ],
+      [
+        "PAD 1",
+        "ROCKET LAUNCHER"
+      ],
+      [
+        "PAD 2",
+        "PLASMA RIFLE"
+      ],
+      [
+        "PAD 3",
+        "BFG"
+      ]
+    ],
+    "notes": [
+      "SELECT ONLY WEAPONS YOU OWN",
+      "KEYS + ARMOR WORK AUTOMATICALLY",
+      "USE PAD 8 AT A MATCHING LOCKED DOOR"
+    ]
+  },
+  {
+    "title": "MENUS + SAVE NAMES",
+    "rows": [
+      [
+        "SEQ",
+        "MENU ON/OFF"
+      ],
+      [
+        "TURN KNOB",
+        "CHOOSE / ADJUST"
+      ],
+      [
+        "PUSH / PLAY",
+        "SELECT / FINISH"
+      ],
+      [
+        "STOP",
+        "BACK / CANCEL"
+      ],
+      [
+        "PLUS / MINUS",
+        "YES / NO"
+      ],
+      [
+        "PADS 9 / 11",
+        "SLIDER LEFT/RIGHT"
+      ]
+    ],
+    "saveRows": [
+      [
+        "TURN / PUSH",
+        "CHOOSE / ENTER LETTER"
+      ],
+      [
+        "ERASE",
+        "DELETE LETTER"
+      ],
+      [
+        "PLUS / MINUS",
+        "MOVE CURSOR"
+      ],
+      [
+        "PLAY / STOP",
+        "SAVE / CANCEL"
+      ]
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "version": "1.0.2",
+  "status": "local review candidate; not published",
+  "engine": {
+    "sha256": "fce8a541caad68b886943d39d878dd9633a0eac9a14418b8ac99afeb42be8c7e"
+  },
+  "hardware_observations": {
+    "ultimate_doom_opening": "Phil confirmed the approved opening displayed before gameplay",
+    "prior_1.0.0": "Both packages passed the main play test; starter save survived a power cycle. See VERIFICATION.md."
+  },
+  "remaining_checks": "See VERIFICATION.md",
+  "windows_setup": {
+    "computer": "Windows 11 Pro x64",
+    "starter": "Extracted on Windows; payload matches 1.0.1",
+    "ultimate_doom": "Packaged launcher run with real GOG offline installer; generated payload matches macOS",
+    "physical_sd": "Both editions copied and verified on an exFAT MPC Sample SD card; Ultimate DOOM active and all five saves unchanged",
+    "mpc_boot": "Phil confirmed that the Windows-prepared Ultimate DOOM card booted to gameplay, loaded existing saves, and played sound normally",
+    "explorer_setup": "The hands-on Windows setup generated all eight expected SD files with matching hashes"
+  },
+  "published": false
+}

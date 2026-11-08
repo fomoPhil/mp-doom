@@ -1,0 +1,10 @@
+{
+  "compiler": "Zig",
+  "version": "0.15.2",
+  "host": "aarch64-macos",
+  "archive_url": "https://ziglang.org/download/0.15.2/zig-aarch64-macos-0.15.2.tar.xz",
+  "archive_sha256": "3cc2bab367e185cdfb27501c4b30b1b0653c28d9f73df8dc91488e66ece5fa6b",
+  "checksum_source": "https://ziglang.org/download/index.json",
+  "target": "aarch64-linux-musl",
+  "flags": ["-target", "aarch64-linux-musl", "-static", "-O2", "-s", "-Wall", "-Wextra", "-Werror"]
+}

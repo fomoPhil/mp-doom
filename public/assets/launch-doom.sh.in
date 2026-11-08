@@ -1,0 +1,86 @@
+#!/bin/sh
+# Run on MPC only, after uploading and hash-checking executable and IWAD.
+set -eu
+[ "$#" = 1 ]
+D=$1
+[ -d "$D" ] && [ ! -L "$D" ]
+[ "$(id -u)" = 0 ]
+grep -q ' /run tmpfs ' /proc/mounts
+RAM=/run/mpc-doom
+[ -x "$RAM/mpc-doom" ]
+[ -s "$RAM/doom.wad" ]
+for unit in mpc-doom.service mpc-panel-demo.service; do
+    state=$(systemctl show "$unit" -p ActiveState --value 2>/dev/null || true)
+    case "$state" in active|activating|deactivating|reloading) echo "$unit is in progress"; exit 0 ;; esac
+done
+systemctl is-active --quiet ac50.service
+# Only save slots persist. Executable, HOME, configuration and logs stay in RAM.
+SD=$(CDPATH= cd -- "$D/.." && pwd -P)
+# systemd parses ReadWritePaths as a whitespace-delimited list. Reject mount
+# names that cannot be passed safely before touching persistent state.
+case "$SD" in *[!A-Za-z0-9/_.-]*) echo "Unsupported SD mount path" >&2; exit 1 ;; esac
+SAVES="$SD/MPC-DOOM/saves/@PROFILE@"
+# Restricted mount paths require no /proc/mounts escape decoding.
+awk -v target="$SD" '$2 == target && $3 == "exfat" && ("," $4 ",") ~ /,rw,/ {ok=1} END {exit !ok}' /proc/mounts
+[ ! -L "$RAM" ]
+for directory in "$SD" "$SD/MPC-DOOM" "$SD/MPC-DOOM/saves" "$SAVES"; do
+    [ ! -L "$directory" ]
+    if [ -e "$directory" ]; then [ -d "$directory" ]; else mkdir "$directory"; fi
+done
+for name in doomsav0.dsg doomsav1.dsg doomsav2.dsg doomsav3.dsg doomsav4.dsg doomsav5.dsg temp.dsg; do
+    [ ! -L "$SAVES/$name" ]
+    if [ -e "$SAVES/$name" ]; then [ -f "$SAVES/$name" ]; fi
+done
+umask 077
+probe=$(mktemp "$SAVES/.write-probe.XXXXXX")
+trap 'rm -f "$probe"' EXIT
+printf '%s\n' mpc-doom-save-probe > "$probe"
+[ "$(cat "$probe")" = mpc-doom-save-probe ]
+rm "$probe"
+trap - EXIT
+if [ -L "$RAM/.savegame" ]; then
+    [ "$(readlink "$RAM/.savegame")" = "$SAVES" ]
+elif [ -e "$RAM/.savegame" ]; then
+    [ -d "$RAM/.savegame" ]
+    # Check every conflict before migrating anything; never replace an SD slot.
+    for slot in 0 1 2 3 4 5; do
+        source="$RAM/.savegame/doomsav$slot.dsg"
+        destination="$SAVES/doomsav$slot.dsg"
+        [ ! -L "$source" ] && [ ! -L "$destination" ]
+        if [ -e "$source" ]; then
+            [ -f "$source" ]
+            if [ -e "$destination" ]; then
+                [ -f "$destination" ]
+                cmp -s "$source" "$destination" || { echo "Conflicting RAM/SD save slot $slot; both preserved" >&2; exit 1; }
+            fi
+        fi
+    done
+    for slot in 0 1 2 3 4 5; do
+        source="$RAM/.savegame/doomsav$slot.dsg"
+        destination="$SAVES/doomsav$slot.dsg"
+        if [ -f "$source" ] && [ ! -e "$destination" ]; then
+            temporary="$SAVES/.migrate-$slot-$$"
+            cp -n "$source" "$temporary"
+            cmp -s "$source" "$temporary"
+            mv -n "$temporary" "$destination"
+            cmp -s "$source" "$destination"
+        fi
+    done
+    archive="$RAM/.savegame.before-persistence-$$"
+    [ ! -e "$archive" ]
+    mv "$RAM/.savegame" "$archive"
+    ln -s "$SAVES" "$RAM/.savegame"
+else
+    ln -s "$SAVES" "$RAM/.savegame"
+fi
+systemd-run --unit=mpc-doom --collect \
+    --working-directory="$RAM" --setenv="HOME=$RAM" \
+    --property=TimeoutStartSec=30s --property=TimeoutStopSec=5s \
+    --property='ExecStartPre=/usr/bin/systemctl stop ac50.service' \
+    --property='ExecStopPost=/usr/bin/systemctl start ac50.service' \
+    --property=ProtectSystem=strict --property="ReadWritePaths=$RAM $SAVES" \
+    --property=ProtectHome=yes --property=NoNewPrivileges=yes \
+    --property="StandardOutput=append:$RAM/doom.log" \
+    --property="StandardError=append:$RAM/doom.log" \
+    "$RAM/mpc-doom" -iwad "$RAM/doom.wad" -skill 2 -warp 1 1
+systemctl is-active mpc-doom.service

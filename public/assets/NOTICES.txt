@@ -1,0 +1,19 @@
+MP DOOM
+
+Engine: doomgeneric revision e257a09527062bfb986b6e5e0780839b6cbd5b71.
+https://github.com/ozkl/doomgeneric
+Local MPC port, build scripts and public setup: GPL-2.0-or-later.
+Original copyright and license notices remain in the matching source.
+See ENGINE-LICENSE.txt for the complete GNU General Public License v2.
+
+Music: Chocolate Doom 3.1.0 / Nuked OPL3. See MUSIC-NOTICES.txt.
+Static runtime: musl and Zig compiler runtime. See RUNTIME-NOTICES.txt.
+
+The corresponding source is in the mp-doom-<version>-source.zip download.
+Distribute matching source alongside both binary downloads. No paid game data is in
+the engine, source archive or full-setup download.
+
+The unchanged starter WAD is separately licensed shareware game data.
+See SHAREWARE-LICENSE.txt. It is not GPL and no ownership is transferred.
+DOOM and MPC Sample are names of their respective owners. This port is
+independent and does not imply endorsement by those owners.

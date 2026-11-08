@@ -1,0 +1,22 @@
+Original DOOM FM music playback
+
+Music engine sources: Chocolate Doom 3.1.0
+https://github.com/chocolate-doom/chocolate-doom
+Pinned revision: 35fb1372d10756ca27eca05665bd8a7cebc71c05
+
+i_oplmusic.c: Copyright (C) 1993-1996 Id Software, Inc.
+             Copyright (C) 2005-2014 Simon Howard
+midifile.c/h and opl_queue.c/h, opl.h: Copyright (C) 2005-2014 Simon Howard
+opl3.c/h (Nuked OPL3 1.8): Copyright (C) 2013-2018 Alexey Khokholov (Nuke.YKT)
+Original notices and acknowledgments remain in the source files.
+The local register reset sequence follows Chocolate Doom's opl.c.
+
+These components are licensed under GNU GPL version 2 or, at your option,
+any later version. They are supplied WITHOUT ANY WARRANTY. See the included
+ENGINE-LICENSE.txt (or upstream/chocolate-music/COPYING.md in a source checkout).
+The local adapter and compatibility generator are GPL-2.0-or-later.
+Matching source, local modifications, and build instructions must accompany
+any binary distribution in accordance with the GPL.
+
+Songs and GENMIDI instruments come from the user's separately licensed WAD.
+They are not GPL code. This notice grants no game-data redistribution rights.
