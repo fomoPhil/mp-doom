@@ -10,9 +10,9 @@ Get the latest ZIPs from [Releases](https://github.com/fomoPhil/mp-doom/releases
 
 | Download | What it is |
 | --- | --- |
-| `mp-doom-1.0.2-starter.zip` | Free. The original shareware episode, ready to copy to your card. |
-| `mp-doom-1.0.2-full-setup.zip` | All four episodes of Ultimate DOOM, built from your own GOG offline installer. Windows and Mac. |
-| `mp-doom-1.0.2-source.zip` | Matching source for developers. Players don't need it. |
+| `mp-doom-1.0.3-starter.zip` | Free. The original shareware episode, ready to copy to your card. |
+| `mp-doom-1.0.3-full-setup.zip` | All four episodes of Ultimate DOOM, built from your own GOG offline installer. Windows and Mac. |
+| `mp-doom-1.0.3-source.zip` | Matching source for developers. Players don't need it. |
 
 Tested on MPC Sample firmware 1.3.0.12.
 

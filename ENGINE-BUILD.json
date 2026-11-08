@@ -1,7 +1,7 @@
 {
   "engine_revision": "e257a09527062bfb986b6e5e0780839b6cbd5b71",
   "target": "mpc",
-  "sha256": "fce8a541caad68b886943d39d878dd9633a0eac9a14418b8ac99afeb42be8c7e",
+  "sha256": "e8da6de958421c85fcf6a8dceee5469ca0ad75258ffa346ee4b1f34893adf0e2",
   "bytes": 1065624,
   "help_content_sha256": "57f20dbd1d4732b461441741a84b89e5fe13243b693f8f82f29e31360fb2efc2",
   "local_sources": {
@@ -41,7 +41,7 @@
     "build_doom.py": "3b4d15634ad2395c923c5b36465906366c445eb30c2e0f36c296394ad73a42ba",
     "doom_music_sources.py": "d33177e85024c2a98be460c1333e434556a4166a1e80d5c4030157d556b072cd",
     "doom_help_sources.py": "22c530a1026e7a6baf781a27ddb42b286ee981dd566e0bb8bdb97edb07b79a84",
-    "doom_opening_sources.py": "65316df70c56fc2c60b0048eb305f61222996ab6cc14fc082f071633b2a91756",
+    "doom_opening_sources.py": "025a83fa71d4ceb9e9251980c550f8662d6044222dee6ba5b68f9f482b39e468",
     "build_support.py": "f25cb1029c41e8f630e708d0057fe740786c9976621fcb9ea771d9b373b9991e"
   },
   "generated_sources_sha256": {
@@ -50,7 +50,7 @@
     "m_menu.c": "75f7a987d50aa9509a2317aac43e7d72e20b3ef4ecea77f9f1679526c1b7aa95",
     "st_stuff.c": "94f3316dc113dde495c306f7a0ffbe7b408562a01cac665069292c020ee8f3f7",
     "mpc_midifile.c": "e5d760db383333d727cca32016123ae7ca5f4c11f0f4f467bfdb1617120fe7e7",
-    "mpc_opening_pixels.inc": "345439c67b1b8279172a37feeb7876c594f3adb39bd472182b1d2b01ea180bd1"
+    "mpc_opening_pixels.inc": "db40c1c0ed16952edf6d62f138d1c4b6e4183b2825e61f4fc64fecd1a1e0b740"
   },
   "flags": [
     "-O2",

@@ -1,8 +1,8 @@
-# MP DOOM 1.0.2
+# MP DOOM 1.0.3
 
 Released November 7, 2026.
 
-- Adds a double-click setup on Windows for the supported GOG Ultimate DOOM offline installer. Windows users can also unzip and copy the free starter as-is.
-- Uses the same MPC engine, opening credit and SD card layout as 1.0.1. Includes the Mac setup, matching source and license notices.
+- New opening title card: the two-line MP DOOM logo from philwoolley.com/mpdoom, drawn as pixel art for the MPC screen.
+- Everything else matches 1.0.2: controls, music, saves, the SD card layout, and the Windows and Mac setup.
 
-Phil confirmed that the approved opening displayed before gameplay with Ultimate DOOM. The main hardware play tests of both editions were performed on the earlier 1.0.0 packages. See `VERIFICATION.md` for the recorded results and remaining checks.
+Phil confirmed that the new title card displayed on the MPC Sample before Ultimate DOOM. Rebuilding with the 1.0.2 artwork still produces the 1.0.2 engine byte for byte, so the title card is the only engine change. See `VERIFICATION.md` for the recorded results and remaining checks.

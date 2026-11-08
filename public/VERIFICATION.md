@@ -1,6 +1,12 @@
-# MP DOOM 1.0.2 verification
+# MP DOOM 1.0.3 verification
 
-Phil confirmed that the approved opening displayed before gameplay with Ultimate DOOM. The 1.0.2 downloads use the same engine as 1.0.1. The opening duration, help credit and Power exit during the opening were checked on the computer.
+## 1.0.3 title card checks
+
+1.0.3 changes only the opening title card. Rebuilding with the 1.0.2 artwork produced the 1.0.2 engine byte for byte, so no other engine code changed. The new engine passed the opening test (normal start, Power and signal exit during the opening, and a display flush failure) and the release unit tests.
+
+The new engine and its launcher files were copied to Phil's Ultimate DOOM MPC Sample card and verified on readback. Only `mpc-doom`, `autorun.sh` and `autorun.check` changed; the game data and all five saves were untouched. Phil restarted the MPC and confirmed that the new title card displayed before DOOM.
+
+The Windows and Mac setup are unchanged from 1.0.2. The checks below were recorded on 1.0.2 and earlier releases.
 
 ## 1.0.2 Windows setup checks
 
@@ -22,7 +28,7 @@ Both 1.0.0 public packages passed the main MPC Sample play test. Each booted, pl
 
 ## Remaining checks
 
-- Observe the opening on the starter and check its duration, help credit and Power exit on the MPC.
+- Observe the 1.0.3 opening on the starter and check its duration, help credit and Power exit on the MPC.
 - Confirm USB-disconnected boot for both editions and test menu Quit and short Power separately, including stock pad sound and controls.
 - Create a new full-game save in an unused slot and load it after a power cycle.
 - Check individual controls, volume and Read This, play past 30 minutes, verify headphone and line-out routing, and confirm stock boot with the card removed.
