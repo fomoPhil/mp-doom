@@ -16,7 +16,7 @@
 
 struct sample { uint32_t length, rate; unsigned char bytes[]; };
 struct voice { struct sample *sample; uint64_t position, step; int left, right; };
-// Start near the previous 20% output; the first knob movement sets its position.
+// Start near 25% output; the first knob movement sets its position.
 static atomic_int master_volume = 64;
 
 void mpc_sound_set_master_volume(int value) {
@@ -45,9 +45,9 @@ static void set_volume(struct voice *voice, int volume, int separation) {
     if (volume > 127) volume = 127;
     if (separation < 0) separation = 0;
     if (separation > 254) separation = 254;
-    // Fixed-point panning with a 40% output ceiling at maximum Main Volume.
-    voice->left = (int)((int64_t)volume * (254 - separation) * 2 * 65536 / (127 * 254 * 5));
-    voice->right = (int)((int64_t)volume * separation * 2 * 65536 / (127 * 254 * 5));
+    // Fixed-point panning with a 50% peak output ceiling at maximum Main Volume.
+    voice->left = (int)((int64_t)volume * (254 - separation) * 65536 / (127 * 254 * 2));
+    voice->right = (int)((int64_t)volume * separation * 65536 / (127 * 254 * 2));
 }
 
 static void mix(struct voice voices[CHANNELS], const int16_t *music, int32_t *output, int frames) {
@@ -55,8 +55,8 @@ static void mix(struct voice voices[CHANNELS], const int16_t *music, int32_t *ou
     int64_t gain = volume;
     for (int frame = 0; frame < frames; frame++) {
         // Match the SFX ceiling, leaving final saturation to the combined mix.
-        int64_t left = music ? (int64_t)music[frame*2] * 65536 * 2 / 5 : 0;
-        int64_t right = music ? (int64_t)music[frame*2+1] * 65536 * 2 / 5 : 0;
+        int64_t left = music ? (int64_t)music[frame*2] * 65536 / 2 : 0;
+        int64_t right = music ? (int64_t)music[frame*2+1] * 65536 / 2 : 0;
         for (int channel = 0; channel < CHANNELS; channel++) {
             struct voice *v = &voices[channel];
             if (!v->sample) continue;
@@ -99,6 +99,8 @@ int main(void) {
     mix(voices, NULL, out, 1);
     int32_t full = out[0];
     assert(full > quiet && out[1] == 0 && voices[0].position == 3 * 65536);
+    // audiolib:levels/gain-staging#R1 A full-scale hard-panned voice peaks at the 50% ceiling.
+    assert(full == 1065353216);
     // Half travel should provide roughly half the maximum amplitude, not a quarter.
     assert(quiet >= (int64_t)full * 49 / 100 && quiet <= (int64_t)full * 52 / 100);
     mpc_sound_set_master_volume(-1);
@@ -111,9 +113,9 @@ int main(void) {
         voices[i] = (struct voice){.sample=s, .step=65536};
         set_volume(&voices[i], 127, 0);
     }
-    mpc_sound_set_master_volume(16);
+    mpc_sound_set_master_volume(8);
     mix(voices, NULL, out, 1);
-    assert(out[0] == (int64_t)full * CHANNELS * 16 / 127);
+    assert(out[0] == (int64_t)full * CHANNELS * 8 / 127);
     mpc_sound_set_master_volume(127);
     memset(voices, 0, sizeof voices);
     memset(s->bytes, 128, s->length);
@@ -157,7 +159,7 @@ int main(void) {
     mpc_sound_set_master_volume(127);
     mix(voices, tune, out, 1);
     int32_t music_full=out[0];
-    assert(music_full>0 && out[1]==-music_full);
+    assert(music_full==536870912 && out[1]==-music_full); // Half-scale music at the 50% ceiling.
     mpc_sound_set_master_volume(64);
     mix(voices, tune, out, 1);
     assert(out[0]==(int64_t)music_full*64/127);
@@ -345,7 +347,7 @@ static boolean sound_init(boolean prefix) {
         return false;
     }
     thread_started = 1;
-    puts("DOOM sound effects: I2S 44100Hz, independent audio thread; MAIN VOLUME=CC19, linear knob, 40% output ceiling, about 20% until first knob movement; original WAD FM music shares this PCM output");
+    puts("DOOM sound effects: I2S 44100Hz, independent audio thread; MAIN VOLUME=CC19, linear knob, 50% output ceiling, about 25% until first knob movement; original WAD FM music shares this PCM output");
     return true;
 }
 

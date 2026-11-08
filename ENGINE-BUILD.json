@@ -1,13 +1,13 @@
 {
   "engine_revision": "e257a09527062bfb986b6e5e0780839b6cbd5b71",
   "target": "mpc",
-  "sha256": "e8da6de958421c85fcf6a8dceee5469ca0ad75258ffa346ee4b1f34893adf0e2",
-  "bytes": 1065624,
+  "sha256": "f82f086341a49b8a408fb600b1f7643ad0f8fb74bcc39691328d9f65515adb4f",
+  "bytes": 1065592,
   "help_content_sha256": "57f20dbd1d4732b461441741a84b89e5fe13243b693f8f82f29e31360fb2efc2",
   "local_sources": {
     "doom/mpc_name_menu.h": "fe4caac0821a8c5032a7d58f14ad5c7ae4502e736913eb114b2208a51c2b8228",
     "doom/mpc_input_logic.h": "ba8b724f9032967d63c555fb108db740725c337651d1f3f368e450ab33f80405",
-    "doom/mpc_sound.c": "48ef95b1edd9b243b743d325e0c30f3b29604ead1290a6ef2bafb8f1178b4361",
+    "doom/mpc_sound.c": "6df32eb9472c034cc045e766ece3200498edbf2eadae2b871b780b13a43d046f",
     "doom/mpc_audio_route.h": "d5cb7650130871b4abc72dbbcb60db762546ec83300473ad4d4bf752bc1229ad",
     "doom/mpc_music.c": "4f54e8637eb8427a7c15816d5ec21fe27b094119b2e574d25ff86bb7a29622aa",
     "doom/test_surface.c": "b39d371fc9ea129226c612ba149ae0230d02fa34ea48c4de872b03420eaeda3c",

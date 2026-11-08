@@ -1,10 +1,12 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "status": "release",
   "engine": {
-    "sha256": "e8da6de958421c85fcf6a8dceee5469ca0ad75258ffa346ee4b1f34893adf0e2"
+    "sha256": "f82f086341a49b8a408fb600b1f7643ad0f8fb74bcc39691328d9f65515adb4f"
   },
   "hardware_observations": {
+    "1.0.4_card_name": "Phil booted the final 1.0.4 starter from an exFAT card named MP DOOM, which 1.0.3 refused; Phil reported it reached DOOM, saved, returned to stock with a short Power press, and the louder Main Volume was good",
+    "1.0.4_engine": "Main Volume ceiling raised from 40% to 50% in doom/mpc_sound.c; no other engine change",
     "1.0.3_title_card": "Phil confirmed the new two-line title card displayed before DOOM on his Ultimate DOOM card",
     "engine_change": "Title card only; rebuilding with the 1.0.2 artwork reproduces the 1.0.2 engine (fce8a541caad68b8...)",
     "earlier": {
@@ -20,7 +22,7 @@
     "physical_sd": "Both editions copied and verified on an exFAT MPC Sample SD card; Ultimate DOOM active and all five saves unchanged",
     "mpc_boot": "Phil confirmed that the Windows-prepared Ultimate DOOM card booted to gameplay, loaded existing saves, and played sound normally",
     "explorer_setup": "The hands-on Windows setup generated all eight expected SD files with matching hashes",
-    "note": "Recorded on 1.0.2; setup unchanged in 1.0.3"
+    "note": "Recorded on 1.0.2; setup unchanged through 1.0.4"
   },
   "published": true
 }

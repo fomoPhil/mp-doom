@@ -16,12 +16,10 @@ done
 systemctl is-active --quiet ac50.service
 # Only save slots persist. Executable, HOME, configuration and logs stay in RAM.
 SD=$(CDPATH= cd -- "$D/.." && pwd -P)
-# systemd parses ReadWritePaths as a whitespace-delimited list. Reject mount
-# names that cannot be passed safely before touching persistent state.
-case "$SD" in *[!A-Za-z0-9/_.-]*) echo "Unsupported SD mount path" >&2; exit 1 ;; esac
 SAVES="$SD/MPC-DOOM/saves/@PROFILE@"
-# Restricted mount paths require no /proc/mounts escape decoding.
-awk -v target="$SD" '$2 == target && $3 == "exfat" && ("," $4 ",") ~ /,rw,/ {ok=1} END {exit !ok}' /proc/mounts
+# /proc/mounts writes a backslash as \134 and a space as \040.
+MOUNT=$(printf '%s\n' "$SD" | sed -e 's/\\/\\134/g' -e 's/ /\\040/g') \
+    awk '$2 == ENVIRON["MOUNT"] && $3 == "exfat" && ("," $4 ",") ~ /,rw,/ {ok=1} END {exit !ok}' /proc/mounts
 [ ! -L "$RAM" ]
 for directory in "$SD" "$SD/MPC-DOOM" "$SD/MPC-DOOM/saves" "$SAVES"; do
     [ ! -L "$directory" ]
@@ -73,12 +71,14 @@ elif [ -e "$RAM/.savegame" ]; then
 else
     ln -s "$SAVES" "$RAM/.savegame"
 fi
+# systemd splits this list on spaces, so the card's path is quoted.
+QUOTED=$(printf '%s\n' "$SAVES" | sed 's/[\\"]/\\&/g')
 systemd-run --unit=mpc-doom --collect \
     --working-directory="$RAM" --setenv="HOME=$RAM" \
     --property=TimeoutStartSec=30s --property=TimeoutStopSec=5s \
     --property='ExecStartPre=/usr/bin/systemctl stop ac50.service' \
     --property='ExecStopPost=/usr/bin/systemctl start ac50.service' \
-    --property=ProtectSystem=strict --property="ReadWritePaths=$RAM $SAVES" \
+    --property=ProtectSystem=strict --property="ReadWritePaths=$RAM \"$QUOTED\"" \
     --property=ProtectHome=yes --property=NoNewPrivileges=yes \
     --property="StandardOutput=append:$RAM/doom.log" \
     --property="StandardError=append:$RAM/doom.log" \

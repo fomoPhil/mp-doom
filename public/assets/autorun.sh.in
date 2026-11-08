@@ -28,9 +28,11 @@ chmod 700 "$RAM/mpc-doom"
 cp "$D/launch-doom.sh" "$RAM/launch-doom.sh"
 chmod 700 "$RAM/launch-doom.sh"
 printf '%s  %s\n' '@LAUNCH_SHA256@' "$RAM/launch-doom.sh" | sha256sum -c - >/dev/null
+# systemd expands ${NAME} in a service's arguments and reads $$ as a literal $.
+D_ARG=$(printf '%s\n' "$D" | sed 's/\$/$$/g')
 systemd-run --unit=mpc-doom-autostart --collect --no-block \
     --property=Type=oneshot --property=After=ac50.service \
     --property=TimeoutStartSec=45s --property=TimeoutStopSec=5s \
     --property="StandardOutput=append:$RAM/launcher.log" \
     --property="StandardError=append:$RAM/launcher.log" \
-    /bin/sh "$RAM/launch-doom.sh" "$D" > "$RAM/setup.log" 2>&1
+    /bin/sh "$RAM/launch-doom.sh" "$D_ARG" > "$RAM/setup.log" 2>&1
