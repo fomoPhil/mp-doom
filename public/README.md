@@ -1,4 +1,4 @@
-# MP DOOM 1.0.2
+# MP DOOM 1.0.3
 
 Play the original DOOM on MPC Sample from an SD card. The starter includes the unchanged, free shareware episode. The full-game setup uses your own supported GOG Ultimate DOOM installer. Both use the same prebuilt engine; no AI or compiling is needed.
 
@@ -6,11 +6,11 @@ This release targets MPC Sample firmware 1.3.0.12. It runs the game from RAM and
 
 ## Choose a download
 
-- **Starter:** unzip `mp-doom-1.0.2-starter.zip`. Its `SD/autorun` folder is ready to copy on Windows and macOS.
-- **Full game:** unzip `mp-doom-1.0.2-full-setup.zip`, then follow the Windows or Mac instructions below. Commercial game data is not included.
-- **Matching source:** `mp-doom-1.0.2-source.zip` contains the engine source, modifications, build scripts and runtime source. It is for developers; players do not need it.
+- **Starter:** unzip `mp-doom-1.0.3-starter.zip`. Its `SD/autorun` folder is ready to copy on Windows and macOS.
+- **Full game:** unzip `mp-doom-1.0.3-full-setup.zip`, then follow the Windows or Mac instructions below. Commercial game data is not included.
+- **Matching source:** `mp-doom-1.0.3-source.zip` contains the engine source, modifications, build scripts and runtime source. It is for developers; players do not need it.
 
-All downloads include version and license information. Compare the ZIP's hash with `SHA256SUMS.txt` using `Get-FileHash .\mp-doom-1.0.2-starter.zip` in PowerShell or `shasum -a 256 mp-doom-1.0.2-starter.zip` on macOS.
+All downloads include version and license information. Compare the ZIP's hash with `SHA256SUMS.txt` using `Get-FileHash .\mp-doom-1.0.3-starter.zip` in PowerShell or `shasum -a 256 mp-doom-1.0.3-starter.zip` on macOS.
 
 ## What you need for the full game
 
